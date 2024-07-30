@@ -1,5 +1,5 @@
 import User from "../Model/User.js";
-
+const fieldList=['first_name','last_name']
 export const userCreate=async(request,response)=>{
     try {
         //console.log(request.body)
@@ -36,13 +36,14 @@ export const userFindOne=async(request,response)=>{
 export const userUpdate=async(request,response)=>{
     
 try {
-    console.log(request.params.id)
+    // console.log(request.params.id)
+   // console.log('update',request.body)
     const user = await User.findByIdAndUpdate({_id:request.params.id},request.body,{new:true})
-    console.log(user)
-        response.send(user)
+  //  console.log(user)
+        response.json({data:user,model:'user',fieldList:fieldList})
 } catch (error) {
-    console.log(error.message)
-    response.stats(500).json("message",error.message)
+    //console.log(error.message)
+    response.status(500).json({"message":error.message})
 }
 }
 export const userDelete=async(request,response)=>{
