@@ -6,7 +6,11 @@ const changeLogHandler =(req,res,next)=>{
 
     res.send = function (body) {
         responseBody = body;
-        originalSend.call(this, body);
+        console.log("body ",body)
+        let d=JSON.parse(body)
+        delete d.model
+
+        originalSend.call(this, JSON.stringify(d));
     };
     req.on('end',()=>{
 // if(req.method=="POST"||req.method=="PUT"||req.method=="DELETE")
@@ -18,8 +22,9 @@ const changeLogHandler =(req,res,next)=>{
 let aaa=JSON.parse(responseBody)
 console.log(aaa)
 // console.log(`Response Data: ${aaa}`);
+
+
     })
-    
     next();
 }
 

@@ -5,7 +5,7 @@ const router=express.Router();
 
 router.get('/all',userFindAll);
 router.post('/',userCreate);
-router.get('/',userFindOne);
+router.get('/:id',userFindOne);
 router.put('/:id',updateChangeLog('user'),userUpdate);
 router.delete('/',userDelete);
 

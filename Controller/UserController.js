@@ -26,7 +26,7 @@ response.send(user)
 export const userFindOne=async(request,response)=>{
     try {
         console.log("find by id")
-        const user=await User.find(request.params.id)
+        const user=await User.find({_id:request.params.id})
     response.status(200).json({user:user,model:'user'})
     } catch (error) {
         console.log(error.message)
