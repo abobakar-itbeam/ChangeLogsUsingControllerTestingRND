@@ -1,5 +1,4 @@
-import CompareOldNewValue from '../util/CompareOldNewValue.js'
-
+import CompareOldNewValue from "../util/CompareOldNewValue.js";
 
 const changeLogHandler = (req, res, next) => {
   let originalSend = res.send;
@@ -11,14 +10,18 @@ const changeLogHandler = (req, res, next) => {
     let d = JSON.parse(body);
     if (d.model) {
       console.log(Object.keys(d));
-    CompareOldNewValue(req.originalDoc,d.data,d.model||"",d.fieldList||[])
+      CompareOldNewValue(
+        req.originalDoc,
+        d.data,
+        d.model || "",
+        d.fieldList || []
+      );
       delete d.model;
       originalSend.call(this, JSON.stringify(d));
     } else originalSend.call(this, body);
 
     // console.log("originalDoc : ", req.originalDoc);
     // console.log("new Doc : ", d);
-
   };
   //   req.on("end", () => {
   //     // if(req.method=="POST"||req.method=="PUT"||req.method=="DELETE")

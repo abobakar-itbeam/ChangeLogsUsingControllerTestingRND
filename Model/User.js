@@ -4,7 +4,7 @@ const AddressSchema = new mongoose.Schema({
   street: { type: String, required: true },
   city: { type: String, required: true },
   state: { type: String, required: true },
-  zip_code: { type: String, required: true }
+  zip_code: { type: String, required: true },
 });
 
 const UserSchema = new mongoose.Schema({
@@ -16,9 +16,14 @@ const UserSchema = new mongoose.Schema({
   phone_number: { type: String, required: true },
   address: { type: AddressSchema, required: true },
   date_of_birth: { type: Date, required: true },
-  role: { type: String, required: true, enum: ['user', 'admin'], default: 'user' }
+  role: {
+    type: String,
+    required: true,
+    enum: ["user", "admin"],
+    default: "user",
+  },
 });
 
-const User = mongoose.model('user', UserSchema);
+const User = mongoose.model("user", UserSchema);
 
 export default User;
