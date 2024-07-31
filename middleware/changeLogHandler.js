@@ -1,5 +1,5 @@
 import storeUpdateDocChangeLog from "../util/ChangeLogsHelperFunctions/storeUpdateDocChangeLog.js";
-
+import findListForChangeLog from '../constant/findListForChangeLog.js'
 const changeLogHandler = (req, res, next) => {
   try {
     let originalSend = res.send;
@@ -18,7 +18,7 @@ const changeLogHandler = (req, res, next) => {
           req.originalDoc||"",
           d.data,
           d.model ||"",
-          d.fieldList || [],
+          findListForChangeLog(d.model) || [],
           type
         );
         delete d.model;

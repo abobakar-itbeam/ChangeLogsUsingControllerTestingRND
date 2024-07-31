@@ -1,5 +1,5 @@
 import User from "../Model/User.js";
-const fieldList = ["first_name", "last_name"];
+
 export const userCreate = async (request, response) => {
   try {
     //console.log(request.body)
@@ -43,7 +43,7 @@ export const userUpdate = async (request, response) => {
       { new: true }
     );
     //  console.log(user)
-    response.json({ data: user, model: "user", fieldList: fieldList });
+    response.json({ data: user, model: "user"});
   } catch (error) {
     console.log(error)
     response.status(500).json({ message: error.message });
