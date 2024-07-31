@@ -1,16 +1,17 @@
-import CompareOldNewValue from "../util/CompareOldNewValue.js";
+import storeUpdateDocChangeLog from "../util/ChangeLogsHelperFunctions/storeUpdateDocChangeLog.js";
 
 const changeLogHandler = (req, res, next) => {
   let originalSend = res.send;
   let responseBody;
 
+  if(req.method=="PUT")
   res.send = function (body) {
     responseBody = body;
     //  console.log("body ",body)
     let d = JSON.parse(body);
     if (d.model) {
       console.log(Object.keys(d));
-      CompareOldNewValue(
+      storeUpdateDocChangeLog(
         req.originalDoc,
         d.data,
         d.model || "",
@@ -23,6 +24,10 @@ const changeLogHandler = (req, res, next) => {
     // console.log("originalDoc : ", req.originalDoc);
     // console.log("new Doc : ", d);
   };
+
+if(req.method=="POST")
+
+
   //   req.on("end", () => {
   //     // if(req.method=="POST"||req.method=="PUT"||req.method=="DELETE")
 

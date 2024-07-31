@@ -8,7 +8,7 @@ export const userCreate = async (request, response) => {
     response.send(user);
   } catch (error) {
     console.log(error.message);
-    response.stats(500).json("message", error.message);
+    response.status(500).json("message", error.message);
   }
 };
 
@@ -19,7 +19,7 @@ export const userFindAll = async (request, response) => {
     response.send(user);
   } catch (error) {
     console.log(error.message);
-    response.stats(500).json("message", error.message);
+    response.status(500).json("message", error.message);
   }
 };
 
@@ -30,7 +30,7 @@ export const userFindOne = async (request, response) => {
     response.status(200).json({ user: user, model: "user" });
   } catch (error) {
     console.log(error.message);
-    response.stats(500).json("message", error.message);
+    response.status(500).json("message", error.message);
   }
 };
 export const userUpdate = async (request, response) => {
@@ -55,6 +55,6 @@ export const userDelete = async (request, response) => {
     response.send(user);
   } catch (error) {
     console.log(error.message);
-    response.stats(500).json("message", error.message);
+    response.status(500).json("message", error.message);
   }
 };

@@ -1,5 +1,5 @@
-import ChangeLogs from "../Model/ChangeLogs.js";
-const CompareOldNewValue = async (OldObject, newObject, model, fieldList) => {
+import ChangeLogs from "../../Model/ChangeLogs.js";
+const storeUpdateDocChangeLog = async (OldObject, newObject, model, fieldList) => {
   let finalObject = {};
   let values = [];
 
@@ -27,4 +27,4 @@ const CompareOldNewValue = async (OldObject, newObject, model, fieldList) => {
   console.log(data);
 };
 
-export default CompareOldNewValue;
+export default storeUpdateDocChangeLog;
