@@ -4,7 +4,7 @@ const updateChangeLog = (model = "user") => {
   return async (req, res, next) => {
     try {
       req.model_name = model;
-      if (req.method == "PUT") {
+      if (req.method == "PUT"||req.method=="PATCH"||req.method=="DELETE") {
         const data = await mongoose.model(model).findOne({ _id: req.params.id });
         req.originalDoc = data;
       }

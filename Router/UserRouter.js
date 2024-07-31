@@ -13,6 +13,6 @@ router.get("/all", userFindAll);
 router.post("/", userCreate);
 router.get("/:id", userFindOne);
 router.put("/:id", updateChangeLog("user"), userUpdate);
-router.delete("/", userDelete);
+router.delete("/:id",updateChangeLog("user"), userDelete);
 
 export default router;

@@ -23,7 +23,7 @@ const storeUpdateDocChangeLog = async (
   //   });
   //   await data.save();
   // }
-
+console.log("store change log call")
 switch(type){
   case 'update':{
 
@@ -44,7 +44,7 @@ switch(type){
      values,
    "Update",
        newObject._id)
-
+console.log("update call")
     break
   }
   case 'create':{
@@ -59,7 +59,14 @@ console.log('create call ')
     break
   }
   case 'delete':{
-console.log('delete call')
+    if(newObject.deletedCount>0)
+    SaveChangeLogs(model,
+      "66a89ae0c432625540803841",
+       "Rana Abobakar",
+      {deleteData:OldObject},
+    "Delete",
+    OldObject._id)
+console.log('delete call',newObject.deletedCount)
     break
   }
 }
@@ -82,7 +89,7 @@ const SaveChangeLogs=async(model_name,user_id,user_name,value,operation_type,rec
     record_id,
   });
   await data.save()
-  console.log(data);
+ // console.log(data);
  } catch (error) {
   console.log(error)
  }

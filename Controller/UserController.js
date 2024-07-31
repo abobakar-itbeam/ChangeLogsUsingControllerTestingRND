@@ -51,8 +51,8 @@ export const userUpdate = async (request, response) => {
 };
 export const userDelete = async (request, response) => {
   try {
-    const user = await User.deleteOne(request.params.id);
-    response.send(user);
+    const user = await User.deleteOne({_id:request.params.id});
+    response.json({data:user,model:"user"});
   } catch (error) {
     console.log(error.message);
     response.status(500).json("message", error.message);
