@@ -3,12 +3,12 @@ const fieldList = ["first_name", "last_name"];
 export const userCreate = async (request, response) => {
   try {
     //console.log(request.body)
-    const user = await User.create(request.body);
-    await user.save();
-    response.send(user);
+    const data = await User.create(request.body);
+    await data.save();
+    response.json({data:data,model:'user'});
   } catch (error) {
     console.log(error.message);
-    response.status(500).json("message", error.message);
+    response.status(500).json("message", error);
   }
 };
 
@@ -45,7 +45,7 @@ export const userUpdate = async (request, response) => {
     //  console.log(user)
     response.json({ data: user, model: "user", fieldList: fieldList });
   } catch (error) {
-    //console.log(error.message)
+    console.log(error)
     response.status(500).json({ message: error.message });
   }
 };
