@@ -8,11 +8,12 @@ const changeLogHandler = (req, res, next) => {
   {
     let type= req.method=="PUT"||req.method=="PATCH"?"update":req.method=="POST"?"create":"delete"
     console.log("type : ",type)
+    
     res.send = function (body) {
       responseBody = body;
       //  console.log("body ",body)
       let d = JSON.parse(body);
-      if (d.model) {
+      if (d.model && d.success ) {
         // console.log(Object.keys(d));
         storeUpdateDocChangeLog(
           req.originalDoc||"",

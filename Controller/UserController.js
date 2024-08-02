@@ -5,7 +5,7 @@ export const userCreate = async (request, response) => {
     //console.log(request.body)
     const data = await User.create(request.body);
     await data.save();
-    response.json({data:data,model:'user'});
+    response.json({data:data,model:'user',success:data?true:false});
   } catch (error) {
     console.log(error.message);
     response.status(500).json("message", error);
@@ -42,8 +42,7 @@ export const userUpdate = async (request, response) => {
       request.body,
       { new: true }
     );
-    //  console.log(user)
-    response.json({ data: user, model: "user"});
+    response.json({ data: user, model: "user",success:user?true:false});
   } catch (error) {
     console.log(error)
     response.status(500).json({ message: error.message });
@@ -52,7 +51,7 @@ export const userUpdate = async (request, response) => {
 export const userDelete = async (request, response) => {
   try {
     const user = await User.deleteOne({_id:request.params.id});
-    response.json({data:user,model:"user"});
+    response.json({data:user,model:"user",success:true});
   } catch (error) {
     console.log(error.message);
     response.status(500).json("message", error.message);
